@@ -12,13 +12,6 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      // Define the about route
-      path: '/about',
-      name: 'about',
-      // Use a function to load the AboutView component lazily
-      component: () => import('../views/AboutView.vue'),
-    },
   ],
 });
 

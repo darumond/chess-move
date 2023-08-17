@@ -1,36 +1,59 @@
 <template>
-  <div class="home">
-   <Counter/>
-    <div class="buttons">
-      <button @click="storeCounter.decreaseCount">-</button>
-      <button @click="storeCounter.increaseCount">+</button>
-    </div>
-    <hr>
-    <div>
-      This counter is: {{ storeCounter.OddOrEven }}
-    </div>
-    <hr>
-    <div>
-      <h3>Edit Counter</h3>
-      <input v-model="storeCounter.count" type="number">
-    </div>
+  <div class="main">
+    <h1>Chess Move Calculator</h1>
+    <div id="board1" style="width: 400px"></div>
+    <!-- <textarea cols="38" @change="getPosition">
+{{ fenUpdate }}
+</textarea> -->
+<input type="text" v-model="fenUpdate" @input="getPosition"/>
+    <button @click="getPosition">Get Position</button>
   </div>
 </template>
 
-<script setup>
-import Counter from '@/components/Counter.vue'
-import {useCounterStore} from '@/stores/counter'
-const storeCounter = useCounterStore()
+<script>
+import ChessBoard from "chessboardjs-vue3";
+import { RouterLink } from "vue-router";
+import { computed, reactive, ref, watch } from 'vue'
+
+const fenUpdate = ref("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+
+function onChange (oldPos, newPos) {
+  fenUpdate.value = Chessboard.objToFen(newPos);
+}
+const config = {
+  position: fenUpdate.value,
+  draggable: true,
+  onChange: onChange,
+}
+let res;
+let test;
+export default {
+  data() {
+    return {
+      getPosition: getPosition,
+      fenUpdate: fenUpdate,
+      res: res,
+    };
+  },
+  mounted() {
+    res = ChessBoard('board1', config);
+  },
+  
+}
+const getPosition = () => {
+  console.log(res.fen());
+  console.log(fenUpdate.value);
+  res.position(fenUpdate.value);
+}
+
 </script>
 
 <style>
-.count {
-  font-size: 60px;
-  margin: 20px;
-}
-
-.buttons button {
-  font-size: 40px;
-  margin: 10px;
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>
