@@ -25,7 +25,7 @@ const handleChessEngine = () => {
     const data = {
         command: `echo ${props.fenUpdate} > fen.perft && ./chessengine --perft fen.perft && rm fen.perft`
     }
-    axios.post('http://localhost:8000/chessengine', data).then((res) => {
+    axios.post('/chessengine', data).then((res) => {
         updateResult(res.data.output)
         console.log("test")
     }).finally(() => {

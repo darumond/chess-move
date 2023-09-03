@@ -7,6 +7,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(`${__dirname}/public`));
+  }
 app.post('/chessengine', async (req, res) => {
     const { command } = req.body;
 
@@ -30,6 +33,6 @@ app.post('/chessengine', async (req, res) => {
     });
 });
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || 8000, () => {
     console.log("Server is running on port 8000");
 });
