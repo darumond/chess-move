@@ -2,9 +2,8 @@
   <div class="main">
     <h1>Chess Move Calculator</h1>
     <div id="board1" style="width: 400px"></div>
-    <div class="input-container">
       <Input :fenUpdate="fenUpdate" @newInput="updateFEN"/>
-    </div>
+      <button class="chessButton">ChessEngine</button>
   </div>
 </template>
 
@@ -49,5 +48,20 @@ const parseFen = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.chessButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7B4CCC; 
+  color: #fff; 
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  &:hover {
+    background-color: #6941AF; 
+  }
 }
 </style>
