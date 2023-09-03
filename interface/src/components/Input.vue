@@ -28,16 +28,19 @@ const fen = computed({
 .input-container {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .custom-input {
     padding: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid #29586f;
     border-radius: 5px;
     font-size: 16px;
     width: 700px;
-    background-color: #ccc; /* Set the background color to grey */
+    background-color: #ccc;
 
+}
+.custom-input:focus {
+    outline: none;
 }
 </style>

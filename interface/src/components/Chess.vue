@@ -2,17 +2,19 @@
   <div class="main">
     <h1 class="title">Chess Move Calculator</h1>
     <div id="board1" style="width: 400px"></div>
+      <span class="fenTitle">FEN</span>
       <Input :fenUpdate="fenUpdate" @newInput="updateFEN"/>
-      <button class="chessButton">ChessEngine</button>
+      <ChessEngineButton :fenUpdate="fenUpdate"/>
   </div>
 </template>
 
 <script setup>
 import ChessBoard from "chessboardjs-vue3";
 import Input from "./Input.vue"
+import ChessEngineButton from './ChessEngineButton.vue'
 import { ref, onMounted } from 'vue'
 
-const fenUpdate = ref("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+const fenUpdate = ref("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 1");
 const config = {
   position: fenUpdate.value,
   draggable: true,
@@ -50,22 +52,16 @@ const parseFen = () => {
   justify-content: center;
 }
 
-.title{
+.title {
   color: white;
+  font-weight: bolder;
+  font-size: 44px;
 }
 
-.chessButton {
+.fenTitle{
+  color: white;
   margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #29586f; 
-  color: #fff; 
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; 
-  &:hover {
-    background-color: #204557; 
-  }
+  font-weight: 800;
 }
+
 </style>
