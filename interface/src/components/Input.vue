@@ -37,5 +37,7 @@ const fen = computed({
     border-radius: 5px;
     font-size: 16px;
     width: 700px;
+    background-color: #ccc; /* Set the background color to grey */
+
 }
 </style>
