@@ -6,7 +6,9 @@ const path = require("path");
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  outputDir: path.resolve(__dirname, "../chessengine/public"),
+  build: {
+    outDir: path.resolve(__dirname, "../chessengine/public")
+  },
   server: {
     proxy: {
       '/chessengine': {
